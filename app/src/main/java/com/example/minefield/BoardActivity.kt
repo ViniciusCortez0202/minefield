@@ -25,7 +25,7 @@ class BoardActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityBoardBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val board = Board(quantityRow = 12, quantityCol = 8, quantityMine = 15)
+        board = Board(quantityRow = 11, quantityCol = 7, quantityMine = 15)
         board.onEvent(this::showResult)
         generateBoard(board)
     }
