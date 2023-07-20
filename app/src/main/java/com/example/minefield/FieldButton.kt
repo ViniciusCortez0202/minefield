@@ -1,5 +1,6 @@
 package com.example.minefield
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
 import android.util.AttributeSet
@@ -20,6 +21,7 @@ class FieldButton @JvmOverloads constructor(
         initialize()
     }
 
+    @SuppressLint("ResourceType")
     private fun initialize() {
         binding = DataBindingUtil.inflate(
             LayoutInflater.from(super.getContext()),
@@ -29,6 +31,10 @@ class FieldButton @JvmOverloads constructor(
         this.default()
         onClick()
         onLongClick()
+
+        val level = resources.getDimensionPixelSize(R.dimen.level_hard)
+        val layoutParam = LayoutParams(level, level)
+        binding.box.layoutParams = layoutParam
     }
 
     private fun setColor(color: Int) {

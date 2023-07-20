@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.text.Layout
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.TableRow
 import android.widget.TextView
 import android.widget.Toast
@@ -23,9 +24,10 @@ class BoardActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        //supportActionBar?.hide()
         binding = ActivityBoardBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        board = Board(quantityRow = 11, quantityCol = 7, quantityMine = 15)
+        board = Board(quantityRow = 25, quantityCol = 14, quantityMine = 15)
         board.onEvent(this::showResult)
         generateBoard(board)
     }
@@ -37,10 +39,10 @@ class BoardActivity : AppCompatActivity() {
 
 
             val trHead = TableRow(this)
-
+            val level = resources.getDimensionPixelSize(R.dimen.level_hard)
             trHead.layoutParams = ViewGroup.LayoutParams(
-                LayoutParams.WRAP_CONTENT,
-                LayoutParams.WRAP_CONTENT
+                level*board.quantityRow,
+                level
             )
             for (i in 0 until board.quantityCol) {
                 val field = FieldButton(this, board.fields[j][i])
